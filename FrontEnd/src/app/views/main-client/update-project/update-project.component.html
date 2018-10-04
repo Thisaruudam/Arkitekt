@@ -1,0 +1,188 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <form #frm="ngForm" id="frm" novalidate>
+        <div class="card-header text-center">
+          <h3>
+            <b>POST</b> YOUR PROJECT <br>
+            <small>This information will let us know more about your project.</small>
+          </h3>
+        </div>
+        <div class="card-body">
+          <h4 class="info-text">Let's start with the basic information</h4>
+          <div class="row">
+            <div class="col-md-12 col-xs-6">
+              <div class="form-group">
+                <label>Choose a name for your project
+                  <small>(required)</small>
+                </label>
+                <input [(ngModel)]="projectDTO.projectId" name="firstname" type="text" class="form-control" readonly>
+              </div>
+              <div class="form-group">
+                <label>Tell us more about your project
+                  <small>(required)</small>
+                </label>
+                <textarea [(ngModel)]="projectDTO.projectDetails" name="textarea" id="textarea"
+                          class="form-control" required
+                          [rows]="5"></textarea>
+              </div>
+              <label>Upload any images or documents that might be helpful for explaining your project</label>
+              <div class="row">
+                <div class="col-12">
+
+                  <div style="border: dashed;border-color: #ffd212;border-radius: 5px;padding: 15px;">
+                    <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000"/>
+                    <div>
+                      <label class="btn btn-outline-warning btn-file">
+                        Browse Files
+                        <input [(ngModel)]="projectDTO.file" type="file" id="fileselect" name="file"
+                               (change)="detectFiles($event)" style="display: none;">
+                      </label>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <img [src]="imageSrc" id="blah">
+                      </div>
+                    </div>
+                    <div id="submitbutton">
+                      <button class="btn btn-success" type="button" (click)="upload()" [disabled]="!selectedFiles"
+                              style="margin-top: 5px">Upload
+                        Files
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="font-medium m-t-30">Skill Set</h4>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="tags-default">
+                <input type="text"
+                       [(ngModel)]="skills"
+                       data-role="tagsinput" placeholder="add skills" name="skills"/>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="font-medium m-t-30"> How would you like to pay? </h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 m-t-5">
+              <select class="custom-select col-12" [(ngModel)]="showDiv" name="select">
+                <option [value]=1>Pay Fixed Price</option>
+                <option [value]=2>Pay By The Hour</option>
+              </select>
+              <div [ngSwitch]="showDiv">
+                <div *ngSwitchCase=2>
+                  <h4 class="font-medium m-t-30"> Desired Experience Level </h4>
+                  <div class="form-group row">
+                    <div class="col-md-4">
+                      <div class="middle">
+                        <label>
+                          <input type="radio" [(ngModel)]="projectDTO.budget" value="< $20.00 /hr" name="radio" checked/>
+                          <div class="entry box">
+                            <span>Entry Level</span>
+                            <p class="text-center">< $20.00 /hr</p>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="middle">
+                        <label>
+                          <input type="radio" [(ngModel)]="projectDTO.budget" value="$20.00 /hr - $40.00 /hr" name="radio"/>
+                          <div class="inter box">
+                            <span>Intermediate</span>
+                            <p class="text-center">$20.00 – $40.00 /hr</p>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="middle">
+                        <label>
+                          <input type="radio" [(ngModel)]="projectDTO.budget" value="> $40.00 /hr" name="radio"/>
+                          <div class="expert box">
+                            <span>Expert</span>
+                            <p class="text-center">> $40.00 /hr</p>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div *ngSwitchCase=1>
+                  <h4 class="font-medium m-t-30">Estimated Budget For Your Project</h4>
+                  <div class="form-group">
+                    <input [(ngModel)]="projectDTO.budget" name="txtBudget" type="text" class="form-control"
+                           placeholder="Rs:50000">
+                  </div>
+                  <h4 class="font-medium m-t-30"> Desired Experience Level </h4>
+                  <div class="form-group row">
+                    <div class="col-md-4">
+                      <div class="middle">
+                        <label>
+                          <input type="radio" name="radio" checked/>
+                          <div class="entry box">
+                            <span>Entry Level</span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="middle">
+                        <label>
+                          <input type="radio" name="radio"/>
+                          <div class="inter box">
+                            <span>Intermediate</span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="middle">
+                        <label>
+                          <input type="radio" name="radio"/>
+                          <div class="expert box">
+                            <span>Expert</span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <h4 class="font-medium m-t-30"> How long do you expect this job to last? </h4>
+              <div class="form-group">
+                <input [(ngModel)]="projectDTO.duration" name="txtDuration" type="text" class="form-control"
+                       placeholder="2 Months">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-finish btn-fill btn-warning btn-wd btn-sm" name="finish" (click)="saveProject()">POST
+              </button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

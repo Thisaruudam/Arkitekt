@@ -1,0 +1,129 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper1">
+  <!-- ============================================================== -->
+  <!-- Topbar header - style you can find in pages.scss -->
+  <!-- ============================================================== -->
+  <header class="topheader bg-dark" id="top">
+    <div class="fix-width">
+      <nav class="navbar navbar-expand-md navbar-light p-l-0">
+        <!-- Logo will be here -->
+        <a class="navbar-brand" routerLink="/"><img src="../../../assets/images/logo.png" alt="admin template"/></a>
+      </nav>
+    </div>
+  </header>
+  <!-- ============================================================== -->
+  <!-- Page wrapper  -->
+  <!-- ============================================================== -->
+  <div class="page-wrapper1">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="fix-width">
+        <div class="row banner-text">
+          <!--<div class="img-responsive">-->
+          <!--<div class="hero-banner"><img src="../../../assets/images/backgrounds/bg-20.jpg"></div>-->
+          <!--</div>-->
+          <div class="col-md-2"></div>
+          <div class="col-md-8 m-t-20">
+            <div class="card bg-white">
+              <div class="card-body">
+                <form #f="ngForm">
+                  <div class="form-body">
+                    <h2 class="card-title">Sign UP</h2>
+                    <hr>
+                    <div class="m-t-30 text-center">
+                      <label for="selectFile">
+                        <img src="../../../../assets/images/users/5.jpg" class="img-circle img-fluid" width="150" height="150"
+                             [src]="url" style="cursor: pointer"
+                             data-toggle="tooltip" data-placement="left" title="Click Here To Upload Profile Picture"
+                             data-container="body">
+                        <input type="file" name="selectFile" id="selectFile" (change)="readUrl($event)" style="display: none">
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label">Email</label>
+                      <input type="email" class="form-control" placeholder="JhonDoe@xyz.com"
+                             [(ngModel)]="freelanacer.email" name="email">
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label">Password</label>
+                      <input type="password" class="form-control" placeholder="Password" ngModel name="password"
+                             #password>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label">Confirm Password</label>
+                      <input type="password" class="form-control" placeholder="Confirm Password" ngModel
+                             name="confirmPassword" #confirmPassword>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label">Your Name</label>
+                      <input [(ngModel)]="freelanacer.name" name="txtName" type="text" class="form-control"
+                             placeholder="Jhon Doe">
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label">Phone</label>
+                      <input [(ngModel)]="freelanacer.phone" name="txtPhone" type="text" class="form-control"
+                             placeholder="000-000 0000">
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label">Address</label>
+                      <input [(ngModel)]="freelanacer.address" name="txtAddress" type="text" class="form-control"
+                             placeholder="No.123,abc Road,XYZ.">
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label">Your Field</label>
+                      <input name="txtName" type="text" class="form-control"
+                             placeholder="Jhon Doe">
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <div class="checkbox checkbox-success p-t-0 p-l-10">
+                          <input id="checkbox-signup" type="checkbox" ngModel name="isSelected">
+                          <label for="checkbox-signup"> I agree to all <a href="#">Terms</a></label>
+                        </div>
+                        <div *ngIf="!f.value.isSelected" class="alert alert-danger bg-danger">
+                          <span>Please Read And Check The Terms</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <button class="btn btn-warning" [disabled]="!f.value.isSelected && f.valid"
+                              (click)="saveUser(f.value)">Sign UP
+                      </button>
+                    </div>
+                    <div class="form-group m-b-0">
+                      <div class="col-sm-12 text-center">
+                        <p>Already have an account? <a routerLink="/login" class="text-warning m-l-5"><b>Sign In</b></a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 call-to-action bg-faded">
+            <div class="fix-width">
+              <div class="row">
+                <strong>Copyright &copy; 2018 <a href="http://ijse.lk">IJSE</a>.</strong>
+                &nbsp;All rights reserved
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

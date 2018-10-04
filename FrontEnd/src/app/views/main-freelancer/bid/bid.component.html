@@ -1,0 +1,173 @@
+<!-- Row -->
+<div class="row">
+  <!-- Column -->
+  <div class="col-lg-12 col-xlg-12 col-md-12">
+    <div class="card">
+      <div class="card-header">
+        Timeline
+      </div>
+      <div class="card-body">
+        <div class="profiletimeline">
+          <div class="sl-item" *ngFor="let project of projects">
+
+            <div class="sl-left">
+              <img
+                [src]='this.domSanitizationService.bypassSecurityTrustResourceUrl("http://localhost:8080/api/v1/getProfilePic?email="+project.clientDTO.email)'
+                alt="user" class="img-circle"/>
+            </div>
+
+            <div class="sl-right">
+              <div>
+                <a class="link text-warning">
+
+                  <span class="mytooltip tooltip-effect-4">
+                    <span>{{project.clientDTO.name}}</span>
+                    <span class="tooltip-content clearfix">
+                      <img
+                        [src]='this.domSanitizationService.bypassSecurityTrustResourceUrl("http://localhost:8080/api/v1/getProfilePic?email="+project.clientDTO.email)'/>
+                      <span class="tooltip-text">Also known as Euclid of andria, was a Greek mathematician, often referred.</span>
+                    </span>
+                  </span>
+
+                </a>
+                <span class="sl-date"> 5 minutes ago</span>
+                <div class="m-t-20 row">
+                  <div class="col-md-3 col-xs-12">
+                    <img
+                      [src]='this.domSanitizationService.bypassSecurityTrustResourceUrl("http://localhost:8080/api/v1/getProjectFile?projectID="+project.projectId)'
+                      alt="user"
+                      class="img-responsive radius"/>
+                  </div>
+                  <div class="col-md-9 col-xs-12">
+                    <p><span class="font-medium">Project Description :</span> {{project.projectDetails}}</p>
+                    <p><span class="font-medium">Required Skills : </span>{{project.requiredSkills}}</p>
+                    <p><span class="font-medium">Project Duration : </span>{{project.duration}}</p>
+                    <p><span class="font-medium">Payment : </span>{{project.budget}}</p>
+                    <a data-target="#bid" data-toggle="modal" class="btn btn-warning"
+                       (click)="setValue(project)"
+                       style="color: white"> Place
+                      BID </a>&nbsp;
+                    <button type="button" class="btn btn-outline-danger" (click)="loadBids(project.projectId)"
+                            data-toggle="modal" data-target="#bids"><i
+                      class="fa fa-list"></i> View Current BIDs
+                    </button>
+                  </div>
+                </div>
+                <div class="like-comm m-t-20">
+                  <a href="javascript:void(0)" class="link m-r-10">2 comment</a>
+                  <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart text-danger"></i> 5 Love</a>
+                </div>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Column -->
+</div>
+<!--End Row-->
+
+
+<!-- Modal content -->
+<div class="modal fade bs-example-modal-lg bidModel" id="bid" tabindex="-1" role="dialog" aria-hidden="true"
+     style="display: none;z-index: 99999">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!--<div class="modal-header">-->
+      <!---->
+      <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+      <!--</div>-->
+      <div class="modal-body">
+          <br>
+          <h4 class="modal-title font-weight-bold text-center">Place BIDs</h4>
+          <br>
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 col-xs-12">
+              <img
+                [src]='this.domSanitizationService.bypassSecurityTrustResourceUrl("http://localhost:8080/api/v1/getProjectFile?projectID="+id)'
+                alt="user"
+                class="img-responsive radius"/>
+            </div>
+            <div class="col-md-3"></div>
+          </div>
+          <br>
+          <div class="row text-center font-medium">
+            <div class="col-md-12">
+              <p>{{details}}</p>
+            </div>
+          </div>
+          <div class="row" style="padding: 10px">
+            <div class="col-md-12 ribbon-wrapper card">
+              <!--<div class="ribbon ribbon-warning">Current Bid : {{budget}}</div>-->
+              <div class="ribbon-content">
+                <form>
+                <div class="form-group">
+                  <label class="control-label">Your BID</label>
+                  <input [(ngModel)]="bid.amount" name="txtBid" type="text" class="form-control" placeholder="Rs.20000">
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Finishing Days/Hours etc</label>
+                  <input [(ngModel)]="bid.daysToComplete" name="txtFinish" type="text" class="form-control"
+                         placeholder="20 Days/40 Hours">
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success waves-effect text-left" (click)="saveBID()" data-dismiss="modal">
+          Place My BID
+        </button>
+        <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Modal Bids -->
+<div class="modal fade bs-example-modal-lg" id="bids" tabindex="-1" role="dialog" aria-hidden="true"
+     style="display: none;z-index: 99999">
+  <div class="modal-dialog modal-lg">
+    <div class="card card-outline-warning">
+      <div class="card-header">
+        <h4 class="m-b-0 text-white">BIDs Details</h4></div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table id="demo-foo-addrow" class="table m-t-30 table-hover no-wrap contact-list" data-page-size="10">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>BID Amount</th>
+              <th>Days To Complete</th>
+              <th>Role</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let bid of bids">
+              <td>
+                <a href="app-contact-detail.html">
+                  <img [src]='this.domSanitizationService.bypassSecurityTrustResourceUrl("http://localhost:8080/api/v1/getProfilePic?email="+bid.freeLancerDTO.email)'
+                       alt="user" class="img-circle" /> {{bid.freeLancerDTO.name}}</a>
+              </td>
+              <td>{{bid.freeLancerDTO.email}}</td>
+              <td>{{bid.amount}}</td>
+              <td>{{bid.daysToComplete}}</td>
+              <td><span class="label label-danger">Architect</span> </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

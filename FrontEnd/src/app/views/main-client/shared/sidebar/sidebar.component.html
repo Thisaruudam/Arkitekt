@@ -1,0 +1,60 @@
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<aside class="left-sidebar">
+  <!-- Sidebar scroll-->
+  <div class="scroll-sidebar">
+    <!-- User profile -->
+    <div class="user-profile" style="background: url(../../../../../assets/images/background/user-info.jpg) no-repeat;">
+      <!-- User profile image -->
+      <div class="profile-img"><img
+        [src]='this.domSanitizationService.bypassSecurityTrustResourceUrl("http://localhost:8080/api/v1/getProfilePic?email="+loggedInUser)'
+        alt="user"/></div>
+      <!-- User profile text-->
+      <div class="profile-text"><a>{{client.name}} <span class="caret"></span></a>
+      </div>
+    </div>
+    <!-- End User profile text-->
+    <!-- Sidebar navigation-->
+    <nav class="sidebar-nav">
+      <ul id="sidebarnav">
+        <li class="nav-small-cap text-white">MENU</li>
+        <li>
+          <a routerLinkActive="active" routerLink="/main-client/client-dashboard"><i class="mdi mdi-gauge"></i><span
+            class="hide-menu">Dashboard</span></a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="/main-client/profile">
+            <i class="mdi mdi-account-edit"></i><span class="hide-menu">Profile</span></a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="/main-client/project"><i class="mdi mdi-package-variant"></i><span
+            class="hide-menu">Projects</span></a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="/main-client/my-projects"><i class="mdi mdi-priority-low"></i><span
+            class="hide-menu">My Projects</span></a>
+        </li>
+        <li>
+          <a routerLinkActive="active" routerLink="/main-client/chat-app-client"><i class="mdi mdi-priority-low"></i><span
+            class="hide-menu">Chat</span></a>
+        </li>
+      </ul>
+    </nav>
+    <!-- End Sidebar navigation -->
+  </div>
+  <!-- End Sidebar scroll-->
+  <!-- Bottom points-->
+  <div class="sidebar-footer">
+    <!-- item-->
+    <a href="" class="link" data-toggle="tooltip" title="Settings"><i class="ti-settings"></i></a>
+    <!-- item-->
+    <a href="" class="link" data-toggle="tooltip" title="Email"><i class="mdi mdi-gmail"></i></a>
+    <!-- item-->
+    <a href="" class="link" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
+  </div>
+  <!-- End Bottom points-->
+</aside>
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->

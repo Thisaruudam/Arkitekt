@@ -1,0 +1,124 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper1">
+  <!-- ============================================================== -->
+  <!-- Topbar header - style you can find in pages.scss -->
+  <!-- ============================================================== -->
+  <header class="topheader bg-dark" id="top">
+    <div class="fix-width">
+      <nav class="navbar navbar-expand-md navbar-light p-l-0">
+        <!-- Logo will be here -->
+        <a class="navbar-brand" routerLink="/"><img src="../../../assets/images/logo.png" alt="admin template"/></a>
+      </nav>
+    </div>
+  </header>
+  <!-- ============================================================== -->
+  <!-- Page wrapper  -->
+  <!-- ============================================================== -->
+  <div class="page-wrapper1">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="fix-width">
+        <div class="row banner-text">
+          <div class="col-md-7 img-responsive">
+            <div class="hero-banner"><img src="../../../assets/images/backgrounds/bg-10.jpg"></div>
+          </div>
+          <div class="col-md-4 m-t-20">
+            <div class="card bg-dark" style="margin-top: 10px">
+              <div class="card-body">
+                <form #frmLogin="ngForm" action="" method="post" (ngSubmit)="login()">
+                  <div class="form-body">
+                    <h2 class="card-title text-white">Log IN</h2>
+                    <hr>
+                    <div class="form-group">
+                      <label class="control-label text-white">User Email</label>
+                      <input [(ngModel)]="user.email" name="txtUserName" type="text" class="form-control" placeholder="JhonDoe@xyz.com">
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label text-white">Password</label>
+                      <input [(ngModel)]="user.password" name="txtPassword" type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <a href="#" class="form-control-label text-warning text-right">Forgot Password?</a>
+                        </div>
+                        <div class="col-md-6">
+                          <a data-toggle="modal" data-target="#responsive-modal" class="form-control-label text-warning">Not A User? Sign UP Now</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-warning">Log IN</button>
+                    </div>
+                    <div *ngIf="failed" class="alert alert-danger alert-dismissible" style="margin-top:10px;">
+                      <h6>Please enter valid login credentials to login</h6>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12 call-to-action bg-faded">
+          <div class="fix-width">
+            <div class="row">
+              <strong>Copyright &copy; 2018 <a href="http://ijse.lk">IJSE</a>.</strong>
+              &nbsp;All rights reserved
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- sample modal content -->
+<div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">How Do You Want To Join With US?</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <div class="col-md-6">
+            <div class="ribbon-wrapper card">
+              <div class="ribbon ribbon-success">FreeLancer</div>
+              <input [(ngModel)]="routerLink" name="membership" type="radio" id="radio_43"
+                     class="radio-col-amber"
+                     [value]="'signUp-freelancer'">
+              <label for="radio_43"></label>
+              <p class="ribbon-content">Join with Us as a Freelancer ...</p>
+            </div>
+
+          </div>
+          <div class="col-md-6">
+            <div class="ribbon-wrapper card">
+              <div class="ribbon ribbon-danger">Hire Freelancers</div>
+              <input [(ngModel)]="routerLink" name="membership" type="radio" id="radio_44"
+                     class="radio-col-amber"
+                     [value]="'signUp-client'">
+              <label for="radio_44"></label>
+              <p class="ribbon-content">Join with us a client and post your project ...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger waves-effect waves-light" routerLink="/{{routerLink}}" data-dismiss="modal">GO</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modal -->

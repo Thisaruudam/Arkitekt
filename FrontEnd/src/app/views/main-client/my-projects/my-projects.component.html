@@ -1,0 +1,165 @@
+<!-- Row -->
+<div class="row">
+  <!-- Column -->
+  <div class="col-lg-12 col-xlg-12 col-md-12">
+    <div class="card">
+      <div class="card-header">
+        Timeline
+      </div>
+      <div class="card-body">
+        <div class="profiletimeline">
+          <div class="sl-item" *ngFor="let project of projects">
+
+            <div class="sl-left">
+              <img
+                [src]='this.domSanitizationService.bypassSecurityTrustResourceUrl("http://localhost:8080/api/v1/getProfilePic?email="+project.clientDTO.email)'
+                alt="user" class="img-circle"/>
+            </div>
+
+            <div class="sl-right">
+              <div>
+                <a class="link text-warning">
+                  <span>{{project.clientDTO.name}}</span>
+                </a>
+                <span class="sl-date"> 5 minutes ago</span>
+                <div class="m-t-20 row">
+                  <div class="col-md-3 col-xs-12">
+                    <img
+                      [src]='this.domSanitizationService.bypassSecurityTrustResourceUrl("http://localhost:8080/api/v1/getProjectFile?projectID="+project.projectId)'
+                      alt="user"
+                      class="img-responsive radius"/>
+                  </div>
+                  <div class="col-md-9 col-xs-12">
+                    <p><span class="font-medium">Project Description :</span> {{project.projectDetails}}</p>
+                    <p><span class="font-medium">Required Skills : </span>{{project.requiredSkills}}</p>
+                    <p><span class="font-medium">Project Duration : </span>{{project.duration}}</p>
+                    <p><span class="font-medium">Payment : </span>{{project.budget}}</p>
+                    <button type="button" class="btn btn-outline-warning" (click)="loadBids(project.projectId)"
+                            data-toggle="modal" data-target="#bids"><i
+                      class="fa fa-list"></i> View Current BIDs
+                    </button>&nbsp;
+                    <button [routerLink]="['/main-client/update-project',project.projectId]" type="button"
+                            class="btn btn-danger"><i class="fa fa-edit"></i> Edit Project
+                    </button>
+                  </div>
+                </div>
+                <div class="like-comm m-t-20">
+                  <a href="javascript:void(0)" class="link m-r-10">2 comment</a>
+                  <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart text-danger"></i> 5 Love</a>
+                </div>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Column -->
+</div>
+<!--End Row-->
+
+<!-- Modal content -->
+<div class="modal fade bs-example-modal-lg" id="bids" tabindex="-1" role="dialog" aria-hidden="true"
+     style="display: none;z-index: 9999">
+  <div class="modal-dialog modal-lg">
+    <div class="card card-outline-warning">
+      <div class="card-header">
+        <h4 class="m-b-0 text-white">BIDs Details</h4></div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table id="demo-foo-addrow" class="table m-t-30 table-hover no-wrap contact-list" data-page-size="10">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>BID Amount</th>
+              <th>Days To Complete</th>
+              <th>Role</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let bid of bids">
+              <td>
+                <a href="" data-toggle="modal" data-target="#user">
+                  <img
+                    [src]='this.domSanitizationService.bypassSecurityTrustResourceUrl("http://localhost:8080/api/v1/getProfilePic?email="+bid.freeLancerDTO.email)'
+                    alt="user" class="img-circle"/> {{bid.freeLancerDTO.name}}
+                </a>
+              </td>
+              <td>{{bid.freeLancerDTO.email}}</td>
+              <td>{{bid.amount}}</td>
+              <td>{{bid.daysToComplete}}</td>
+              <td><span class="label label-danger">Architect</span></td>
+              <td>
+                <button class="btn btn-block btn-primary" (click)="hire(bid)">Hire</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Modal Freelancer -->
+<div class="modal fade bs-example-modal-lg" id="user" tabindex="-1" role="dialog" aria-hidden="true"
+     style="display: none;z-index: 99999">
+  <div class="modal-dialog modal-lg card">
+    <div class="row card-body">
+      <!-- Column -->
+      <div class="col-lg-5 col-xlg-3 col-md-6 text-center">
+            <div class="align-self-center">
+              <img src="../assets/images/users/1.jpg" class="img-circle" width="100">
+              <h4 class="card-title">James Anderson</h4>
+              <h6 class="card-subtitle">@jamesandre</h6>
+              <p class="text-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                incididunt </p>
+        </div>
+        <div class="fix-width"></div>
+      </div>
+      <!-- Column -->
+      <div class="col-lg-7 col-xlg-9 col-md-6 b-l p-l-0">
+
+          <h3 class="card-title text-center">Reviews</h3>
+          <div class="message-box">
+            <div class="message-widget">
+              <!-- Message -->
+              <a href="#">
+                <div class="user-img"><span class="round bg-primary"><i class="mdi mdi-email"></i></span></div>
+                <div class="mail-contnet">
+                  <h5>You have 3 new messages</h5> <span class="mail-desc">Daniel Kristeen, Hanna Giover, Jeffry Brown</span> <span class="time">9:30 AM</span> </div>
+              </a>
+              <!-- Message -->
+              <a href="#">
+                <div class="user-img"><span class="round bg-danger"><i class="mdi mdi-earth"></i></span></div>
+                <div class="mail-contnet">
+                  <h5>Newsfeed available </h5> <span class="mail-desc">Todays headlines : Breakdancing Grandma Proves ..</span> <span class="time">9:10 AM</span> </div>
+              </a>
+              <!-- Message -->
+              <a href="#">
+                <div class="user-img"> <span class="round bg-success"><i class="mdi mdi-currency-usd"></i></span></div>
+                <div class="mail-contnet">
+                  <h5>2 Invoices to pay</h5> <span class="mail-desc">$3500 from Krishnan, $2000 from Akhil</span> <span class="time">9:08 AM</span> </div>
+              </a>
+              <!-- Message -->
+              <a href="#">
+                <div class="user-img"><span class="round"><i class="mdi mdi-comment-check-outline"></i></span></div>
+                <div class="mail-contnet">
+                  <h5>15 New comments</h5> <span class="mail-desc">Jhonny : Hey this stuff is awesome and how can i ..</span> <span class="time">9:02 AM</span> </div>
+              </a>
+            </div>
+        </div>
+
+
+      </div>
+      <!-- Column -->
+    </div>
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
